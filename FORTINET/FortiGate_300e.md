@@ -1,4 +1,4 @@
-<img src="../STATIC/images/logo.png" align="center" width="100px"></img>
+<img src="../STATIC/images/logo.png" align="center" width="200px"></img>
 <h1 align="center">Configuración de FORTIGATE 300E (FORTINET)</h1>
 
 > [!NOTE]
@@ -8,9 +8,9 @@
 ## Accesorio usadas
 | Accesorio           |Descripción                                                                      |
 |---------------------|---------------------------------------------------------------------------------|
-| Cable consola       | Conexión entre el adaptador DB9 y el puerto consola del equipo. |
-| Adaptador USB  DB9  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el computador   |
-| Patch Cord RJ45 568B| Conector entre los puertos RJ45 del equipo y el computador     |
+| `Cable consola`       | Conexión entre el adaptador DB9 y el puerto consola del equipo. |
+| `Adaptador USB  DB9`  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el computador   |
+| `Patch Cord RJ45 568B`| Conector entre los puertos RJ45 del equipo y el computador     |
 
 ## Diagrama de conexión
 
@@ -28,9 +28,9 @@
 
 5. Se abrirá una ventana de terminal. En ella, deberás iniciar sesión con las credenciales del dispositivo FortiGate (nombre de usuario y password).
 
-6. Ingresa el nombre de usuario por defecto "admin" cuando se te solicite y presiona Enter. Luego, se te pedirá que ingreses la contraseña por defecto " ". Ten en cuenta que mientras escribes la contraseña, no verás ningún indicador visual (ni asteriscos ni caracteres), pero aún así se está registrando lo que escribes. Presiona Enter después de ingresar la contraseña.
+6. Ingresa el nombre de usuario por defecto `admin` cuando se te solicite y presiona Enter. Luego, se te pedirá que ingreses la contraseña por defecto " ". Ten en cuenta que mientras escribes la contraseña, no verás ningún indicador visual (ni asteriscos ni caracteres), pero aún así se está registrando lo que escribes. Presiona Enter después de ingresar la contraseña.
 
-```powershell
+```
 FortiGate-300E login: admin
 Password: *****
 Welcome !
@@ -41,9 +41,9 @@ Welcome !
 
 ## Comandos para extraer información
 
-1. Información del dispositivo
+1. **Información del dispositivo**
 
-```powershell
+```
 get system status
 ```
 - se utiliza para obtener una visión general del estado del sistema en tiempo real. Este comando proporciona información esencial sobre el dispositivo:
@@ -54,29 +54,73 @@ get system status
     - Información de la tarjeta de red
     - Números de serie y otros detalles del hardware:
 
+```
+FortiGate-300E # get system status
+Version: ******************************
+Virus-DB: 90.04713(2022-08-02 15:20)
+Extended DB: 90.04713(2022-08-02 15:19)
+Extreme DB: 1.00000(2018-04-09 18:07)
+IPS-DB: 6.00741(2015-12-01 02:30)
+IPS-ETDB: 6.00741(2015-12-01 02:30)
+APP-DB: 6.00741(2015-12-01 02:30)
+INDUSTRIAL-DB: 6.00741(2015-12-01 02:30)
+Serial-Number: ***************
+IPS Malicious URL Database: 1.00001(2015-01-01 01:01)
+Botnet DB: 1.00000(2012-05-28 22:51)
+BIOS version: 05000007
+System Part-Number: P21593-03
+Log hard disk: Not available
+Hostname: FortiGate-300E
+Operation Mode: NAT
+Current virtual domain: root
+Max number of virtual domains: 10
+Virtual domains status: 1 in NAT mode, 0 in TP mode
+Virtual domain configuration: disable
+FIPS-CC mode: disable
+Current HA mode: standalone
+Branch point: 1112
+Release Version Information: GA
+FortiOS x86-64: Yes
+System time: Thu Dec 21 12:08:41 2023
 
-2. Información del estado de los servicios
-```powershell
+```
+
+2. **Información del estado de los servicios**
+```
 get system fortiguard-service status
 ```
 - Este comando proporciona detalles sobre la conectividad y el estado actual de los servicios de FortiGuard (licencias), como:
 
     - Conexión con FortiGuard
     - Estado de los servicios de actualización
+```
+FortiGate-300E # get system fortiguard-service status
+NAME               VERSION LAST UPDATE          METHOD    EXPIRE
+AV Engine           6.144  2020-02-22 01:46:00  manual    n/a
+Virus Definitions   90.4713  2022-08-02 15:20:00  manual    n/a
+Extended set        90.4713  2022-08-02 15:19:00  manual    n/a
+Extreme set         1.000  2018-04-09 18:07:00  manual    n/a
+Flow-based Virus Definitions  90.4713  2022-08-02 15:25:00  manual    n/a
+Attack Definitions  6.741  2015-12-01 02:30:00  manual    n/a
+Attack Extended Definitions  6.741  2015-12-01 02:30:00  manual    n/a
+IPS Malicious URL Database  1.001  2015-01-01 01:01:00  manual    n/a
+Botnet Definitions  1.000  2012-05-28 22:51:00  manual    n/a
+IPS/FlowAV Engine   5.209  2020-05-07 15:50:00  manual    n/a
+IPS Config Script   1.009  2019-06-06 14:02:00  manual    n/a
+Application Definitions  6.741  2015-12-01 02:30:00  manual    n/a
+Industrial Attack Definitions  6.741  2015-12-01 02:30:00  manual    n/a
 
+```
 
-3. Estado de ventiladores
-```powershell
+3. **Estado de ventiladores**
+```
 execute sensor list
 ```
 
 <details>
-<summary>Importante revisar los valores</summary>
+<summary>valida que todos los valores "alarm" esten en valor (0).</summary>
 
-> [!IMPORTANT]
->valida que todos los valores "alarm" esten en valor (0).
-
-```python
+```
    FortiGate-300E # execute sensor list
     1 +VCC3             alarm=0  value=3.2896  threshold_status=0
     2 +VCC5             alarm=0  value=5.0172  threshold_status=0
@@ -123,3 +167,31 @@ execute sensor list
 
 </details>
 
+4. **información del rendimiento del sistema**
+```
+get system performance status
+```
+- Este comando obtiene información detallada sobre el rendimiento del sistema, proporciona datos como la carga de la CPU, la memoria utilizada, el estado de la interfaz de red, las sesiones activas y otros indicadores clave de rendimiento
+    - Uso de la CPU
+    - Uso de memoria
+    - Estado de las interfaces de red
+    - Sesiones activas
+
+```
+FortiGate-300E # get system performance status
+CPU states: 0% user 1% system 0% nice 99% idle 0% iowait 0% irq 0% softirq
+CPU0 states: 0% user 0% system 0% nice 100% idle 0% iowait 0% irq 0% softirq
+CPU1 states: 0% user 5% system 0% nice 95% idle 0% iowait 0% irq 0% softirq
+CPU2 states: 0% user 0% system 0% nice 100% idle 0% iowait 0% irq 0% softirq
+CPU3 states: 0% user 0% system 0% nice 100% idle 0% iowait 0% irq 0% softirq
+Memory: 8172040k total, 1600152k used (19.6%), 6371520k free (78.0%), 200368k freeable (2.4%)
+Average network usage: 0 / 0 kbps in 1 minute, 0 / 0 kbps in 10 minutes, 0 / 0 kbps in 30 minutes
+Average sessions: 0 sessions in 1 minute, 0 sessions in 10 minutes, 0 sessions in 30 minutes
+Average session setup rate: 0 sessions per second in last 1 minute, 0 sessions per second in last 10 minutes, 0 sessions per second in last 30 minutes
+Average NPU sessions: 0 sessions in last 1 minute, 0 sessions in last 10 minutes, 0 sessions in last 30 minutes
+Average nTurbo sessions: 0 sessions in last 1 minute, 0 sessions in last 10 minutes, 0 sessions in last 30 minutes
+Virus caught: 0 total in 1 minute
+IPS attacks blocked: 0 total in 1 minute
+Uptime: 0 days,  2 hours,  51 minutes
+
+```
