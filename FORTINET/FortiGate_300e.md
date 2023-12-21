@@ -177,6 +177,7 @@ get system performance status
     - Estado de las interfaces de red
     - Sesiones activas
 
+    ***Para considerar que el equipo se encuentra operativo, el estado debe mostrar por debajo 30%***
 ```
 FortiGate-300E # get system performance status
 CPU states: 0% user 1% system 0% nice 99% idle 0% iowait 0% irq 0% softirq
@@ -194,4 +195,172 @@ Virus caught: 0 total in 1 minute
 IPS attacks blocked: 0 total in 1 minute
 Uptime: 0 days,  2 hours,  51 minutes
 
+```
+
+5. **Información de las interfaces físicas**
+- Este comando muestra detalles específicos de cada interfaz física
+```
+get system interface physical
+```
+```
+FortiGate-300E # get system interface physical
+== [onboard]
+        ==[ha]
+                mode: static
+                ip: 0.0.0.0 0.0.0.0
+                ipv6: ::/0
+                status: down
+                speed: n/a
+        ==[mgmt]
+                mode: static
+                ip: 192.168.1.99 255.255.255.0
+                ipv6: ::/0
+                status: down
+                speed: n/a
+        ==[port1]
+                mode: static
+                ip: 192.168.20.1 255.255.255.0
+                ipv6: ::/0
+                status: up
+                speed: 100Mbps (Duplex: full)
+        ==[port2]
+                mode: static
+                ip: 0.0.0.0 0.0.0.0
+                ipv6: ::/0
+                status: down
+--More--
+
+```
+- Este comando muestra detalles específicos de cada interfaz física
+
+```
+show system interface port1
+```
+```
+FortiGate-300E # show system interface port1
+config system interface
+    edit "port1"
+        set vdom "root"
+        set ip 192.168.20.1 255.255.255.0
+        set allowaccess ping https ssh
+        set type physical
+        set snmp-index 3
+    next
+end
+```
+
+
+6. **Configuración de puertos**
+```
+FortiGate-300E # config system interface
+FortiGate-300E (interface) # edit port1
+FortiGate-300E (port1) # set mode static
+FortiGate-300E (port1) # set ip 192.168.20.1 255.255.255.0
+FortiGate-300E (port1) # set allowaccess ping ssh https
+FortiGate-300E (port1) # set status up
+FortiGate-300E (port1) # end
+```
+- `config system interface`: Este comando te lleva al modo de configuración de interfaz, lo que significa que estás listo para editar las configuraciones de la interfaz.
+
+- `edit port1`: Accedes a la configuración de la interfaz port1, lo que te permite ajustar la configuración específica de esa interfaz en particular.
+
+- `set mode static`: Define el modo de la interfaz como estática. Esto significa que la interfaz tendrá una dirección IP estática y no obtendrá una a través de DHCP.
+
+- `set ip 192.168.20.1 255.255.255.0`: Asigna la dirección IP 192.168.20.1 a la interfaz port1 con una máscara de subred de 255.255.255.0. Esta será la dirección IP de esta interfaz en tu red local.
+
+- `set allowaccess ping ssh https`: Habilita el acceso a la interfaz port1 permitiendo el ping, el acceso SSH y HTTPS. Esto permite que la interfaz responda a pings, permita conexiones SSH y acceso a través de HTTPS (puerto 443).
+
+- `set status up`: Activa la interfaz port1, colocándola en estado "up" para que sea funcional y comience a aceptar tráfico.
+
+- `end`: Este comando finaliza la configuración y sale del modo de configuración de interfaz, regresando al nivel de configuración global.
+
+
+> [!NOTE]
+>Estos comandos configuran la interfaz port1 con una dirección IP estática, habilitan el ping, SSH y acceso HTTPS, y activan la interfaz.
+
+
+
+7. **Información sobre la interfaz _Port1_**
+```
+fnsysctl ifconfig port1
+```
+```
+FortiGate-300E # fnsysctl ifconfig port1
+port1   Link encap:Ethernet  HWaddr 70:4C:A5:AF:72:AE
+        inet addr:192.168.20.1  Bcast:192.168.20.255  Mask:255.255.255.0
+        UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+        RX packets:6405 errors:0 dropped:0 overruns:0 frame:0
+        TX packets:12 errors:0 dropped:0 overruns:0 carrier:0
+        collisions:0 txqueuelen:1000
+        RX bytes:651912 (636.6 KB)  TX bytes:1008 (1008  Bytes)
+```
+> [!IMPORTANT]
+>Validar
+
+| Detalle     |Valor        |
+|-------------|-------------|
+| `RX packets`| errors:0    |
+| `TX packets`| errors:0    |
+| `collisions`| collisions:0|
+
+7. **Configura las opciones para el comando de ping**
+
+```
+execute ping-options repeat-count 30
+```
+- El comando `execute ping-options` en un FortiGate se utiliza para configurar las opciones para los comandos de ping que se ejecuten posteriormente en el dispositivo
+
+```
+execute ping 192.168.20.254
+```
+- El comando execute `ping 192.168.20.254` en un dispositivo FortiGate se utiliza para realizar una prueba de conectividad ICMP (ping) hacia la dirección IP `192.168.20.254`.
+
+```
+FortiGate-300E # execute ping 192.168.20.254
+PING 192.168.20.254 (192.168.20.254): 56 data bytes
+64 bytes from 192.168.20.254: icmp_seq=0 ttl=128 time=1.7 ms
+64 bytes from 192.168.20.254: icmp_seq=1 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=2 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=3 ttl=128 time=2.3 ms
+64 bytes from 192.168.20.254: icmp_seq=4 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=5 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=6 ttl=128 time=2.3 ms
+64 bytes from 192.168.20.254: icmp_seq=7 ttl=128 time=2.1 ms
+64 bytes from 192.168.20.254: icmp_seq=8 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=9 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=10 ttl=128 time=2.5 ms
+64 bytes from 192.168.20.254: icmp_seq=11 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=12 ttl=128 time=2.2 ms
+64 bytes from 192.168.20.254: icmp_seq=13 ttl=128 time=2.5 ms
+64 bytes from 192.168.20.254: icmp_seq=14 ttl=128 time=2.5 ms
+64 bytes from 192.168.20.254: icmp_seq=15 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=16 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=17 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=18 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=19 ttl=128 time=2.1 ms
+64 bytes from 192.168.20.254: icmp_seq=20 ttl=128 time=2.3 ms
+64 bytes from 192.168.20.254: icmp_seq=21 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=22 ttl=128 time=2.5 ms
+64 bytes from 192.168.20.254: icmp_seq=23 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=24 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=25 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=26 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=27 ttl=128 time=2.1 ms
+64 bytes from 192.168.20.254: icmp_seq=28 ttl=128 time=2.4 ms
+64 bytes from 192.168.20.254: icmp_seq=29 ttl=128 time=2.4 ms
+
+--- 192.168.20.254 ping statistics ---
+30 packets transmitted, 30 packets received, 0% packet loss
+round-trip min/avg/max = 1.7/2.3/2.5 ms
+```
+> [!IMPORTANT]
+>El ping debe ser continuo y si mucha perdida de paquetes
+
+
+
+
+
+Comando para reset de fabrica del equipo
+```
+execute factoryreset
 ```
