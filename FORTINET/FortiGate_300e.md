@@ -354,9 +354,17 @@ PING 192.168.20.254 (192.168.20.254): 56 data bytes
 round-trip min/avg/max = 1.7/2.3/2.5 ms
 ```
 > [!IMPORTANT]
->El ping debe ser continuo y si mucha perdida de paquetes, se deve de repetir la configuracion desde el item 5 por cada uno de los puertos del equipos cambiando el nombre de la interfaz a configurar.
+>El ping deve ser continuo y sin mucha perdida de paquetes, se deve de repetir la configuracion desde el item 5 por cada uno de los puertos del equipos cambiando el nombre de la interfaz a configurar.
 
-
+- **Comandos para borrar la configuración del puerto específico**
+```
+config system interface
+edit port1
+unset ip
+unset allowaccess
+unset status
+end
+```
 > [!CAUTION]
 >Al finalizar la validación completa del equipo no olvidar realizar un `restauración de fabrica`,comando para reset de fabrica del equipo
 ```
