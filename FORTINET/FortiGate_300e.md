@@ -15,13 +15,14 @@
 ## Diagrama de conexión
 
 ## Pasos para interacción con la CLI [PuTTY](https://www.putty.org/)
+> [!TIP]
+>Validar el numero del puerto COM al que esta conectado el cable serial en el "administrador de dispositivo" del computador
+
 1. Iniciar el programa PuTTY una vez conectado el equipo(Router) al computador.
 
 2. En la ventana de PuTTY, en la sección de configuración de la conexión, selecciona la conexión serie (Serial) en el panel izquierdo.
 
 3. En la configuración de la conexión serie, ingresa COM# en el campo que indica "Serial line to connect to" o "Puerto serie a conectar".
-> [!TIP]
->Validar el numero del puerto COM al que esta conectado el cable serial en el "administrador de dispositivo" del computador
 
 4. Configura la velocidad (Speed) con valor de 9600 que viene por defecto en algunos casos, iniciar con el boton Open.
 
@@ -30,9 +31,9 @@
 6. Ingresa el nombre de usuario por defecto "admin" cuando se te solicite y presiona Enter. Luego, se te pedirá que ingreses la contraseña por defecto " ". Ten en cuenta que mientras escribes la contraseña, no verás ningún indicador visual (ni asteriscos ni caracteres), pero aún así se está registrando lo que escribes. Presiona Enter después de ingresar la contraseña.
 
 ```powershell
-    FortiGate-300E login: admin
-    Password: *****
-    Welcome !
+FortiGate-300E login: admin
+Password: *****
+Welcome !
 ```
 
 
@@ -43,7 +44,7 @@
 1. Información del dispositivo
 
 ```powershell
-    get system status
+get system status
 ```
 - se utiliza para obtener una visión general del estado del sistema en tiempo real. Este comando proporciona información esencial sobre el dispositivo:
 
@@ -56,7 +57,7 @@
 
 2. Información del estado de los servicios
 ```powershell
-    get system fortiguard-service status
+get system fortiguard-service status
 ```
 - Este comando proporciona detalles sobre la conectividad y el estado actual de los servicios de FortiGuard (licencias), como:
 
@@ -66,12 +67,17 @@
 
 3. Estado de ventiladores
 ```powershell
-    execute sensor list
+execute sensor list
 ```
+
+<details>
+<summary>Importante revisar los valores</summary>
+
 > [!IMPORTANT]
 >valida que todos los valores "alarm" esten en valor (0).
-```powershell
-    FortiGate-300E # execute sensor list
+
+```python
+   FortiGate-300E # execute sensor list
     1 +VCC3             alarm=0  value=3.2896  threshold_status=0
     2 +VCC5             alarm=0  value=5.0172  threshold_status=0
     3 +VCC12            alarm=0  value=11.898  threshold_status=0
@@ -114,3 +120,6 @@
     40 PS2 Status        alarm=0  (not detected)
 
 ```
+
+</details>
+
