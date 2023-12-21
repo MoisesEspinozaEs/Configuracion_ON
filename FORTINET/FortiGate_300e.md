@@ -1,4 +1,4 @@
-<img src="../STATIC/images/logo.png" align="center" width="200px"></img>
+<div align="center"><img src="../STATIC/images/logo.png" width="200px"></img></div>
 <h1 align="center">Configuración de FORTIGATE 300E (FORTINET)</h1>
 
 > [!NOTE]
@@ -9,7 +9,7 @@
 | Accesorio           |Descripción                                                                      |
 |---------------------|---------------------------------------------------------------------------------|
 | `Cable consola`       | Conexión entre el adaptador DB9 y el puerto consola del equipo. |
-| `Adaptador USB  DB9`  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el computador   |
+| `Adaptador USB a DB9`  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el computador   |
 | `Patch Cord RJ45 568B`| Conector entre los puertos RJ45 del equipo y el computador     |
 
 ## Diagrama de conexión
@@ -231,24 +231,6 @@ FortiGate-300E # get system interface physical
 --More--
 
 ```
-- Este comando muestra detalles específicos de cada interfaz física
-
-```
-show system interface port1
-```
-```
-FortiGate-300E # show system interface port1
-config system interface
-    edit "port1"
-        set vdom "root"
-        set ip 192.168.20.1 255.255.255.0
-        set allowaccess ping https ssh
-        set type physical
-        set snmp-index 3
-    next
-end
-```
-
 
 6. **Configuración de puertos**
 ```
@@ -279,8 +261,26 @@ FortiGate-300E (port1) # end
 >Estos comandos configuran la interfaz port1 con una dirección IP estática, habilitan el ping, SSH y acceso HTTPS, y activan la interfaz.
 
 
-
 7. **Información sobre la interfaz _Port1_**
+- Este comando muestra detalles de una interfaz específica
+
+```
+show system interface port1
+```
+```
+FortiGate-300E # show system interface port1
+config system interface
+    edit "port1"
+        set vdom "root"
+        set ip 192.168.20.1 255.255.255.0
+        set allowaccess ping https ssh
+        set type physical
+        set snmp-index 3
+    next
+end
+```
+
+- Comando para ver la configuración de una interfaz específica, como port1, en un FortiGate
 ```
 fnsysctl ifconfig port1
 ```
@@ -295,7 +295,7 @@ port1   Link encap:Ethernet  HWaddr 70:4C:A5:AF:72:AE
         RX bytes:651912 (636.6 KB)  TX bytes:1008 (1008  Bytes)
 ```
 > [!IMPORTANT]
->Validar
+>Validar `RX packets` `TX packets` `collisions` el valor del error en `0`
 
 | Detalle     |Valor        |
 |-------------|-------------|
@@ -354,13 +354,14 @@ PING 192.168.20.254 (192.168.20.254): 56 data bytes
 round-trip min/avg/max = 1.7/2.3/2.5 ms
 ```
 > [!IMPORTANT]
->El ping debe ser continuo y si mucha perdida de paquetes
+>El ping debe ser continuo y si mucha perdida de paquetes, se deve de repetir la configuracion desde el item 5 por cada uno de los puertos del equipos cambiando el nombre de la interfaz a configurar.
 
 
-
-
-
-Comando para reset de fabrica del equipo
+> [!CAUTION]
+>Al finalizar la validación completa del equipo no olvidar realizar un `restauración de fabrica`,comando para reset de fabrica del equipo
 ```
 execute factoryreset
+```
+```
+
 ```
