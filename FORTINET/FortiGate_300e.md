@@ -10,4 +10,4 @@ Desarrollador Web Frontend con React y Next.js. Docente de especialización en D
 | Adaptador USB  DB9  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el computador   |
 | Patch Cord RJ45 568B| Conector entre los puertos RJ45 del equipo y el computador     |
 
-![logo](../static/images/logo.png)
+![logo](../STATIC/images/logo.png)
