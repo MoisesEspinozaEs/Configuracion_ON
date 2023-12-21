@@ -18,13 +18,13 @@
 > [!TIP]
 >Validar el numero del puerto COM al que esta conectado el cable serial en el "administrador de dispositivo" del computador
 
-1. Iniciar el programa PuTTY una vez conectado el equipo(Router) al computador.
+1. Iniciar el programa `PuTTY` una vez conectado el equipo(Router) al computador.
 
-2. En la ventana de PuTTY, en la sección de configuración de la conexión, selecciona la conexión serie (Serial) en el panel izquierdo.
+2. En la ventana de `PuTTY`, en la sección de configuración de la conexión, selecciona la conexión serie (Serial) en el panel izquierdo.
 
-3. En la configuración de la conexión serie, ingresa COM# en el campo que indica "Serial line to connect to" o "Puerto serie a conectar".
+3. En la configuración de la conexión serie, ingresa `COM#` en el campo que indica `Serial line to connect to` o `Puerto serie a conectar`.
 
-4. Configura la velocidad (Speed) con valor de 9600 que viene por defecto en algunos casos, iniciar con el boton Open.
+4. Configura la velocidad (Speed) con valor de `9600` que viene por defecto en algunos casos, iniciar con el boton `Open`.
 
 5. Se abrirá una ventana de terminal. En ella, deberás iniciar sesión con las credenciales del dispositivo FortiGate (nombre de usuario y password).
 
