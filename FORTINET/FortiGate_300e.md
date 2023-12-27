@@ -3,16 +3,18 @@
 <!-- <h3 align="center"><a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a></h3> -->
 
 
-## <span style="font-size:2em">FortiGate® 300E Series</span>
+## <span style="font-size:2.5em">FortiGate® 300E Series</span>
 
-<span style="font-size:1.2em">FG-300E and FG-301E</span>
+<span style="font-size:1.5em">FG-300E and FG-301E</span>
 
-[DATA SHEET](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf)
+[🔗 DATA SHEET](https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf)
+
 
 ---
 
 <img src="../STATIC/images/fortigate_300e.png" width="400px">
 
+---
 
 > [!NOTE]
 >Aquí encontrarás los pasos y/o accesorios que se requiere para una buena validación de este modelo de equipo, ten en cuenta que esta información es basico para poder realizar la validación solicitado por el Cliente
