@@ -1,11 +1,37 @@
-<div align="center"><img src="../STATIC/images/logo.png" width="200px"></img></div>
-<h1 align="center">Configuración de FORTIGATE 300E (FORTINET)</h1>
+<style>
+    a{
+        text-decoration:none;
+    }
+    .container{
+        display:flex;
+        justify-content:space-around;
+    }
+    .first p{
+        font-size:2rem;
+        font-weight:bold;
+    }
+</style>
+<div align="center"><img src="../STATIC/images/logo.png" width="200px"></img></div></br>
+<!-- <h1 align="center">Configuración de FORTIGATE 300E</h1> -->
+<!-- <h3 align="center"><a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a></h3> -->
+
+<div class="container">
+    <div class="first">
+        <a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a>
+        <p>FortiGate® 300E Series</p>
+        <span>FG-300E and FG-301E </span>
+    </div>
+    <div class="second">
+        <img src="../STATIC/images/fortigate_300e.png" width="200px">
+    </div>
+</div>
+<h1></h1>
 
 > [!NOTE]
 >Aquí encontrarás los pasos y/o accesorios que se requiere para una buena validación de este modelo de equipo, ten en cuenta que esta información es basico para poder realizar la validación solicitado por el Cliente
 
 
-## Accesorio usadas
+## Accesorios usadas
 | Accesorio           |Descripción                                                                      |
 |---------------------|---------------------------------------------------------------------------------|
 | `Cable consola`       | Conexión entre el adaptador DB9 y el puerto consola del equipo. |
@@ -117,8 +143,8 @@ Industrial Attack Definitions  6.741  2015-12-01 02:30:00  manual    n/a
 execute sensor list
 ```
 
-<details>
-<summary>valida que todos los valores "alarm" esten en valor (0).</summary>
+
+`valida que todos los valores "alarm" esten en valor (0).`
 
 ```
    FortiGate-300E # execute sensor list
@@ -164,8 +190,6 @@ execute sensor list
     40 PS2 Status        alarm=0  (not detected)
 
 ```
-
-</details>
 
 4. **información del rendimiento del sistema**
 ```
@@ -356,7 +380,7 @@ round-trip min/avg/max = 1.7/2.3/2.5 ms
 > [!IMPORTANT]
 >El ping deve ser continuo y sin mucha perdida de paquetes, se deve de repetir la configuracion desde el item 5 por cada uno de los puertos del equipos cambiando el nombre de la interfaz a configurar.
 
-- **Comandos para borrar la configuración del puerto específico**
+- **Comandos para borrar la configuración de la interfaz específico**
 ```
 config system interface
 edit port1
