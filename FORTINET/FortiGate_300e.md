@@ -3,7 +3,7 @@
 <!-- <h3 align="center"><a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a></h3> -->
 
 
-## <span style="font-size:2.5em">FortiGate® 300E Series</span>
+<h1>FortiGate® 300E Series</h1>
 
 <span style="font-size:1.5em">FG-300E and FG-301E</span>
 
@@ -28,6 +28,7 @@
 | `Patch Cord RJ45 568B`| Conector entre los puertos RJ45 del equipo y el computador     |
 
 ## Diagrama de conexión
+![FortiGate 300E](../STATIC/diagramas/fortigate_300e.png)
 
 ## Pasos para interacción con la CLI [PuTTY](https://www.putty.org/)
 > [!TIP]
