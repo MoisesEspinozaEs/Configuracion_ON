@@ -12,7 +12,7 @@
 
 ---
 
-<img src="../STATIC/images/fortigate_300e.png" width="400px">
+<img src="../STATIC/images/fortigate_300e.png" width="350px">
 
 ---
 
@@ -53,7 +53,81 @@ Password: *****
 Welcome !
 ```
 
+---
+>[!IMPORTANT]
+> En caso de que el acceso inicial con el usuario por defecto no sea posible, se recomienda proceder con el acceso utilizando las credenciales de usuario `maintainer`, este procedimiento se lleva a cabo para realizar una modificación en la contraseña del usuario `admin` con el fin de garantizar un acceso seguro
 
+```
+FortiGate-300E login: maintainer
+Password: ********************
+Welcome !
+```
+1. Escriba el nombre de usuario `maintainer`
+2. La contraseña es bcpb + el número de serie del firewall (las letras del número de serie están en formato MAYÚSCULAS).Por ejemplo: bcpbFGT60C3G10xxxxxx.
+
+>[!NOTE]
+>En algunos dispositivos, después de que se inicia, solo está disponible una ventana de entrada de 14 segundos o menos para escribir el nombre de usuario y la contraseña
+
+3. Antes de proceder con la modificación, se realiza una verificación previa para confirmar si el usuario en cuestión está registrado como usuario local en el sistema, asegurando así la legitimidad del cambio de contraseña con el siguiente comando:
+```
+show system admin
+```
+- Este comando mostrara todos los usuarios registrados en el sistema del equipos.
+```
+FortiGate-300E # show system admin
+config system admin
+    edit "admin"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC *****************************************
+    next
+    edit "admin_test"
+        set remote-auth enable
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC *****************************************
+    next
+end
+```
+- el segundo usuario ("admin_test") tiene configurado `set remote-auth enable`, lo que indica que este usuario está habilitado para autenticación remota, lo cual puede ser a través de un servidor de autenticación externo como RADIUS o LDAP
+
+- Por otro lado, el primer usuario ("admin") no tiene esta configuración, lo que podría indicar que es un usuario local al cual devemos modificar el password.
+
+4. Modificar el passwor del `usuario local`
+
+```
+FortiGate-300E # config system admin
+FortiGate-300E (admin) # edit *******
+FortiGate-300E (admin) # set password ******
+FortiGate-300E (admin) # end
+```
+- Accede al entorno de configuración del sistema de administración mediante el comando `config system admin`.
+
+- Utiliza el comando `edit` seguido del nombre del usuario al que deseas modificar, esto te permite acceder y editar la información específica de ese usuario.
+
+- Establece una nueva contraseña para ese usuario específico usando el comando `set password`. Aquí reemplaza "******" con la nueva contraseña que deseas asignar al usuario.
+
+- Una vez hayas definido la nueva contraseña, utiliza el comando `end` para salir del modo de configuración de administración y aplicar los cambios realizados
+
+5. Cerrar sesión del usuario actual y restablecer de fabrica el equipo
+```
+exit
+```
+- utiliza el comando `exit` para salir de la sesión del usuario actual y regresar al nivel superior de acceso
+
+- ccede nuevamente al sistema utilizando las credenciales del usuario para el cual se modificó la contraseña anteriormente. Ingresa al sistema con estas nuevas credenciales
+
+- Una vez dentro del sistema con las credenciales del usuario correspondiente, procede a iniciar el proceso de restablecimiento de fábrica. Puedes usar el comando específico como `execute factoryreset` para iniciar este procedimiento
+```
+execute factoryreset
+```
+```
+FortiGate-300E # execute factoryreset
+This operation will reset the system to factory default!
+Do you want to continue? (y/n)
+```
+- Realizar un restablecimiento a la configuración de fábrica borrará toda la configuración actual del dispositivo y la restaurará a la configuración predeterminada de fábrica, para restablcer indique `Y` para continuar
+---
  
 
 ## Comandos para extraer información
@@ -393,7 +467,7 @@ FortiGate-300E # execute factoryreset
 This operation will reset the system to factory default!
 Do you want to continue? (y/n)
 ```
-- Realizar un restablecimiento a la configuración de fábrica borrará toda la configuración actual del dispositivo y la restaurará a la configuración predeterminada de fábrica, para restablcer inidique `Y` para continuar
+- Realizar un restablecimiento a la configuración de fábrica borrará toda la configuración actual del dispositivo y la restaurará a la configuración predeterminada de fábrica, para restablcer indique `Y` para continuar
 
 >[!IMPORTANT]
 > Esperar a que el equipo se reinicia por completo para desconectar de la fuente de alimentación.
