@@ -24,8 +24,8 @@
 | Accesorio           |Descripción                                                                      |
 |---------------------|---------------------------------------------------------------------------------|
 | `Cable consola`       | Conexión entre el adaptador DB9 y el puerto consola del equipo. |
-| `Adaptador USB a DB9`  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el computador   |
-| `Patch Cord RJ45 568B`| Conector entre los puertos RJ45 del equipo y el computador     |
+| `Adaptador USB a DB9`  | Adaptador de usb hacia el cable consola, necesaria para conexión del cable consola y el :computer: computador   |
+| `Patch Cord RJ45 568B`| Conector entre los puertos RJ45 del equipo y el :computer: computador     |
 
 ## Diagrama de conexión
 <img src="../STATIC/diagramas/fortigate_300e.png" width="500px">
@@ -33,9 +33,9 @@
 
 ## Pasos para interacción con la CLI [PuTTY](https://www.putty.org/)
 > [!TIP]
->Validar el numero del puerto COM al que esta conectado el cable serial en el "administrador de dispositivo" del computador
+>Validar el numero del puerto COM al que esta conectado el cable serial en el "administrador de dispositivo" del :computer: computador
 
-1. Iniciar el programa `PuTTY` una vez conectado el equipo(Router) al computador.
+1. Iniciar el programa `PuTTY` una vez conectado el equipo(Router) al :computer: computador.
 
 2. En la ventana de `PuTTY`, en la sección de configuración de la conexión, selecciona la conexión serie (Serial) en el panel izquierdo.
 
