@@ -1,25 +1,12 @@
-<style>
-    a{
-        text-decoration:none;
-    }
-    .container{
-        display:flex;
-        justify-content:space-around;
-    }
-    .first p{
-        font-size:2rem;
-        font-weight:bold;
-    }
-</style>
 <div align="center"><img src="../STATIC/images/logo.png" width="200px"></img></div></br>
 <!-- <h1 align="center">Configuración de FORTIGATE 300E</h1> -->
 <!-- <h3 align="center"><a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a></h3> -->
 
-<div class="container">
+<div class="container" style="display:flex;justify-content:space-around;margin:0 0 20px 0">
     <div class="first">
-        <a href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a>
-        <p>FortiGate® 300E Series</p>
-        <span>FG-300E and FG-301E </span>
+        <a style="font-size:0.9rem" href="https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf">DATA SHEET</a>
+        <p style="font-size:2.5rem;font-weight:bold;margin:0">FortiGate® 300E Series</p>
+        FG-300E and FG-301E
     </div>
     <div class="second">
         <img src="../STATIC/images/fortigate_300e.png" width="200px">
