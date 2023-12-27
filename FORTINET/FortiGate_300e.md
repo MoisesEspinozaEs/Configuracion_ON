@@ -28,7 +28,8 @@
 | `Patch Cord RJ45 568B`| Conector entre los puertos RJ45 del equipo y el computador     |
 
 ## Diagrama de conexión
-![FortiGate 300E](../STATIC/diagramas/fortigate_300e.png)
+<img src="../STATIC/diagramas/fortigate_300e.png" width="500px">
+
 
 ## Pasos para interacción con la CLI [PuTTY](https://www.putty.org/)
 > [!TIP]
@@ -379,11 +380,22 @@ unset allowaccess
 unset status
 end
 ```
+
+8. **Restauración de fabrica:**
+
 > [!CAUTION]
 >Al finalizar la validación completa del equipo no olvidar realizar un `restauración de fabrica`,comando para reset de fabrica del equipo
 ```
 execute factoryreset
 ```
 ```
-
+FortiGate-300E # execute factoryreset
+This operation will reset the system to factory default!
+Do you want to continue? (y/n)
 ```
+- Realizar un restablecimiento a la configuración de fábrica borrará toda la configuración actual del dispositivo y la restaurará a la configuración predeterminada de fábrica, para restablcer inidique `Y` para continuar
+
+>[!IMPORTANT]
+> Esperar a que el equipo se reinicia por completo para desconectar de la fuente de alimentación.
+
+:rocket: *¡Llegaste al final del documento!*
