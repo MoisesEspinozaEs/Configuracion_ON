@@ -6,4 +6,4 @@
 <h1>YEASTER - NEOGATE</h1>
 <span style="font-size:1.5em">TE 100</span>
 
-[🔗 USER MANUAL]([https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf](https://help.yeastar.com/download/docs/te100-user-manual-en.pdf)https://help.yeastar.com/download/docs/te100-user-manual-en.pdf)
+[🔗 DATA SHEET]([https://www.fortinet.com/content/dam/fortinet/assets/data-sheets/FortiGate_300E.pdf](https://help.yeastar.com/download/docs/te100-user-manual-en.pdf)https://help.yeastar.com/download/docs/te100-user-manual-en.pdf)
